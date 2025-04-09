@@ -10,9 +10,9 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Get the correct file path
-model_path = os.path.join(os.path.dirname(__file__), "../dist/model", "ensemble_model.pkl")
-vectorizer_path = os.path.join(os.path.dirname(__file__), "../dist/model", "tfidf_vectorizer.pkl")
-encoder_path = os.path.join(os.path.dirname(__file__), "../dist/model", "label_encoder.pkl")
+model_path = os.path.join(os.path.dirname(__file__), "../assets/model", "ensemble_model.pkl")
+vectorizer_path = os.path.join(os.path.dirname(__file__), "../assets/model", "tfidf_vectorizer.pkl")
+encoder_path = os.path.join(os.path.dirname(__file__), "../assets/model", "label_encoder.pkl")
 
 print("Model path:", model_path)
 # Load the trained model
@@ -23,7 +23,7 @@ label_encoder = joblib.load(encoder_path)  # Load label encoder
 
 # Load the CSV once at server start
 try:
-    doctor_df = pd.read_csv("dist/Dataset/Ahmedabad_All_Specialist_Doctors.csv")
+    doctor_df = pd.read_csv("assets/Dataset/Ahmedabad_All_Specialist_Doctors.csv")
     print("✅ Loaded doctor records:", len(doctor_df))
 except Exception as e:
     doctor_df = pd.DataFrame(columns=["Disease", "Specialist Doctor/Hospital"])
